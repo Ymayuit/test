@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Cookie&family=Dancing+Script&family=Gochi+Hand&display=swap');
+
+/* 「*」全体共通箇所にCSSを反映させる場合 */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url(img/back00.png);
+}
+
+.container{
+  font-family: 'Caveat';
+  position: relative;
+  width: 1000px;
+  display: grid;
+  /* これが4つを横並びにしている */
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+}
+
+.container .card{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: palegreen;
+}
+
+/* カーソルを持っていくと画像が動く */
+.container .card:hover{
+  transition: 0.5s;
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(228,61,164,0.5);
+}
+
+/* 交互に文字と画像を逆位置に */
+.container .card:nth-child(even){
+  flex-direction: column-reverse;
+}
+
+.container .card .imgBx{
+  position: relative;
+  width: 250px;
+  height: 250px;
+  background: yellow;
+}
+
+/* 画像のサイズ */
+.container .card .imgBx img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 65%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 文字と画像サイズを一緒にした */
+.container .card .content{
+  position: relative;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* テキスト部分 */
+.container .card  .content div{
+  padding: 20px;
+  text-align: center;
+}
+
+.content h2{
+  padding-bottom: 10px;
+  font-size: 40px;
+}
+
+@media (max-width:1000px){
+  .container{
+    grid-template-columns: repeat(auto-fit,minmax(100%,1fr));
+    margin: 50px;
+  }
+  .container .card{
+    flex-direction: row;
+    margin: 10px 0;
+  }
+  .container .card:nth-child(even){
+    flex-direction: row-reverse;
+  }
+  .container .card .imgBx,
+  .container .card .content{
+    width: 30%;/it makes imgs n contents half of container/
+  }
+}
+
+@media (max-width:600px){
+  .container .card{
+    flex-direction: column;
+    margin: 10px 0;
+  }
+  .container .card:nth-child(even){
+    flex-direction: column;
+  }
+  .container .card .imgBx,
+  .container .card .content{
+    width: 50%;/it makes imgs n contents full of container/
+  }
+  .container .card .content{
+    height: 200px;
+  }
+}
